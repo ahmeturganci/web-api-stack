@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web-api-stack", "web-api-stack\web-api-stack.csproj", "{31C92847-A2D1-4043-9A1C-89FE327CB6D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{E5A6AB7E-AAC4-4C3B-85D4-B3B484B04D1C}"
+	ProjectSection(SolutionItems) = preProject
+		using-web-api.html = using-web-api.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31C92847-A2D1-4043-9A1C-89FE327CB6D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C92847-A2D1-4043-9A1C-89FE327CB6D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C92847-A2D1-4043-9A1C-89FE327CB6D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C92847-A2D1-4043-9A1C-89FE327CB6D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DF0FFD8-146F-438F-8B62-4E9B00F7080F}
+	EndGlobalSection
+EndGlobal

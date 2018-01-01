@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Using Web Api</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="jumbotron text-center">
+        <h1>web-api-stack</h1>
+        <p>Basic using sample!</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Add Product</h3>
+                <input type="text" class="form-control" name="ProductName" value="" placeholder="Product Name" id="Name" />
+                <br />
+                <input type="text" class="form-control" name="ProductCode" value="" placeholder="Product Code" id="Code" />
+                <br />
+                <input type="number" class="form-control" name="ProductPiece" value="" placeholder="Product Piece" id="Piece" />
+                <br />
+                <input type="text" class="form-control" name="ProductSummary" value="" placeholder="Product Summary" id="Summary" />
+                <br />
+                <button class="btn btn-success" id="btnAddProduct">Add</button>
+            </div>
+            <div class="col-sm-4">
+                <h3>List Product</h3>
+                <button id="btnListProduct" class="btn btn-primary">List Product</button>
+                <div id="productList"></div>
+            </div>
+            <div class="col-sm-4">
+                <h3>Delete Product</h3>
+                <input type="number" class="form-control" name="DeleteProductId" value="" id="DeleteProductId" />
+                <br />
+                <button class="btn btn-danger" id="btnDeleteProduct">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            //Add Product
+            $("#btnAddProduct").click(function () {
+                var productData = {
+                    Name: $("#Name").val(),
+                    Code: $("#Code").val(),
+                    Piece: $("#Piece").val(),
+                    Summary: $("#Summary").val()
+                };
+                console.log(productData);
+                //maybe valid control sample
+                //if (productData.Name == "" || productData.Name.length <= 0) {
+                //    alert("invalid value");
+                //}
+                //https://pasteboard.co/H0U5tmt.png -> if you encounter an error similar to this 
+                // https://enable-cors.org/server_iis7.html -> Add the web config in the api project on this link
+                //      API uri, data,callback function
+                $.post("http://localhost:51414/api/Products", productData, function (r) {
+                    if (r.Id != null) {
+                        alert("Product added successfully");
+                    }
+                    else {
+                        alert("Product added not");
+                    }
+                });
+            });
+
+            //List product 
+            $("#btnListProduct").click(function () {
+                $("#productList").html(""); //empty the list again
+                console.log("Button clicked")
+                $.get("http://localhost:51414/api/Products", "", function (r) {
+                    $.each(r, function (i, item) {
+                        $("#productList").append("<p> Id:" + item.Id + " Name:" + item.Name + " Code:" + item.Code + " Summary:" + item.Summary+"</p>");
+                    })
+                });
+                // if you want single value get just make 
+                /* $.get("http://localhost:51414/api/Products/3", "", function (r) {
+                    $("#productList").append("<p> Id:" + item.Id + " Name:" + item.Name + " Code:" + item.Code + " Summary:" + item.Summary + "</p>");
+                });*/
+            });
+
+            //Delete Product
+            $("#btnDeleteProduct").click(function () {
+                var deleteValue = $("#DeleteProductId").val();
+                console.log(deleteValue);
+                $.post("http://localhost:51414/DeleteProduct/" + deleteValue +"","" , function (r) {
+                    console.log("loading...")
+                    if (r == true) {
+                        alert("successfully")
+                    }
+                })
+                //$.ajax({
+                //    url: 'http://localhost:51414/api/Products/' + deleteValue,
+                //    type: 'DELETE',
+                //    headers: { 'Access-Control-Allow-Origin': '*' },
+                //    success: function (result) {
+                //        console.log(result);
+                //    }
+                //});
+            });
+        });
+    </script>
+</body>
+</html>
