@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using web_api_stack.App_Start;
 using web_api_stack.Models;
 
 namespace web_api_stack.Controllers
@@ -17,6 +18,7 @@ namespace web_api_stack.Controllers
         private ProductModel db = new ProductModel();
 
         // GET: api/Products
+        [CacheFilter(TimeDuration = 100)]
         public IQueryable<Product> GetProducts()
         {
             return db.Products;

@@ -95,6 +95,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CacheFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BL\UtilsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
